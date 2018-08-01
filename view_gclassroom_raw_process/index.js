@@ -14,8 +14,8 @@ module.exports = function (context, data) {
             id:             row.SCHOOL_CODE + '-' + row.CLASS_CODE,
             school_code:    row.SCHOOL_CODE,
             class_code:     row.CLASS_CODE,
-            teacher_ein:    row.TEACHER_EIN,
-            teacher_email:  row.TEACHER_EMAIL
+            teacher_ein:    row.TEACHER_EIN ? row.TEACHER_EIN : '',
+            teacher_email:  row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
         };
 
         // Extract the 'enrolment' object from the row
@@ -27,8 +27,8 @@ module.exports = function (context, data) {
             student_first_name: row.STUDENT_FIRST_NAME,
             student_last_name:  row.STUDENT_LAST_NAME,
             student_email:      row.STUDENT_EMAIL,
-            teacher_ein:        row.TEACHER_EIN,
-            teacher_email:      row.TEACHER_EMAIL
+            teacher_ein:        row.TEACHER_EIN ? row.TEACHER_EIN : '',
+            teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
         };
 
         // Append classes and enrolments from this row to their collection arrays
