@@ -23,7 +23,7 @@ module.exports = function (context, data) {
             id:                 row.SCHOOL_CODE + '-' + row.CLASS_CODE + '-' + row.STUDENT_NO,
             school_code:        row.SCHOOL_CODE,
             class_code:         row.CLASS_CODE,
-            student_no:         row.STUDENT_NO,
+            student_number:     row.STUDENT_NO,
             student_first_name: row.STUDENT_FIRST_NAME,
             student_last_name:  row.STUDENT_LAST_NAME,
             student_email:      row.STUDENT_EMAIL,
