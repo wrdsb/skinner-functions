@@ -20,7 +20,7 @@
       "name": "outBlob",
       "type": "blob",
       "path": "trillium/view-gclassroom-raw.json",
-      "connection": "skinner_STORAGE",
+      "connection": "wrdsbskinner_STORAGE",
       "direction": "out"
     },
     {
