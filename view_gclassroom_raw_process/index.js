@@ -31,13 +31,19 @@ module.exports = function (context, data) {
             teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
         };
 
-        // Append classes and enrolments from this row to their collection arrays
-        classesArray.push(classObject);
-        enrolmentsArray.push(enrolmentObject);
-
         // Add/overwrite classes and enrolments from this row to their collection objects
         classesObject[classObject.id]        = classObject;
         enrolmentsObject[enrolmentObject.id] = enrolmentObject;
+    });
+
+    // Add each class from classesObject to classesArray
+    Object.getOwnPropertyNames(classesObject).forEach(function (classID) {
+        classesArray.push(classesObject[classID]);
+    });    
+
+    // Add each enrolment from enrolmentsObject to enrolmentsArray
+    Object.getOwnPropertyNames(enrolmentsObject).forEach(function (enrolmentID) {
+        enrolmentsArray.push(enrolmentsObject[enrolmentID]);
     });
 
     // Write out arrays and objects to blobs
