@@ -9,9 +9,11 @@ module.exports = function (context, data) {
     var enrolmentsArray = [];
 
     rows.forEach(function(row) {
+        var sanitized_class_code = row.CLASS_CODE.replace('/', '-');
+
         // Extract the 'class' object from the row
         var classObject = {
-            id:             row.SCHOOL_CODE + '-' + row.CLASS_CODE,
+            id:             row.SCHOOL_CODE + '-' + sanitized_class_code,
             school_code:    row.SCHOOL_CODE,
             class_code:     row.CLASS_CODE,
             teacher_ein:    row.TEACHER_EIN ? row.TEACHER_EIN : '',
@@ -20,7 +22,7 @@ module.exports = function (context, data) {
 
         // Extract the 'enrolment' object from the row
         var enrolmentObject = {
-            id:                 row.SCHOOL_CODE + '-' + row.CLASS_CODE + '-' + row.STUDENT_NO,
+            id:                 row.SCHOOL_CODE + '-' + sanitized_class_code + '-' + row.STUDENT_NO,
             school_code:        row.SCHOOL_CODE,
             class_code:         row.CLASS_CODE,
             student_number:     row.STUDENT_NO,
