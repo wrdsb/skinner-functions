@@ -20,19 +20,16 @@ module.exports = function (context, data) {
     });
 
     for (var i = 0; i < alphabet.length; i++) {
-        var nextLetter = alphabet.charAt(i);
+        var letter = alphabet.charAt(i);
 
-        Object.getOwnPropertyNames(enrolmentsNowObject[nextLetter]).forEach(function (enrolmentID) {
-            enrolmentsNowArrays[nextLetter].push(enrolmentsNowObject[nextLetter][enrolmentID]);
+        Object.getOwnPropertyNames(enrolmentsNowObject[letter]).forEach(function (enrolmentID) {
+            enrolmentsNowArrays[letter].push(enrolmentsNowObject[letter][enrolmentID]);
         });
+
+        // Write out arrays and objects to blobs
+        context.bindings['enrolmentsNowArray'+letter] = JSON.stringify(enrolmentsNowArrays[letter]);
+        context.bindings['enrolmentsNowObject'+letter] = JSON.stringify(enrolmentsNowObject[letter]);
     }
-
-    // Write out arrays and objects to blobs
-    context.bindings.enrolmentsNowArrayA = JSON.stringify(enrolmentsNowArrays['A']);
-    context.bindings.enrolmentsNowObjectA = JSON.stringify(enrolmentsNowObject['A']);
-
-    context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsNowArrays['B']);
-    context.bindings.enrolmentsNowObjectB = JSON.stringify(enrolmentsNowObject['B']);
 
     var event_type = "ca.wrdsb.skinner.trillium.enrolments.split";
     var event = {
