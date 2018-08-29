@@ -67,7 +67,7 @@ module.exports = function (context, data) {
                     {
                         path: "trillium/enrolments-now-object-b.json",
                         connection: "wrdsbskinner_STORAGE",
-                    }
+                    },
                 ]
             },
         },
