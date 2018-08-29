@@ -4,41 +4,34 @@ module.exports = function (context, data) {
     var enrolments = context.bindings.enrolmentsNowArray;
 
     var enrolmentsNowObject = {};
-    var enrolmentsNowArrayA = [];
-    var enrolmentsNowArrayB = [];
+    var enrolmentsNowArrays = {};
 
     var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    for(var i = 0; i < alphabet.length; i++) {
+    for (var i = 0; i < alphabet.length; i++) {
         var nextLetter = alphabet.charAt(i);
+        
         enrolmentsNowObject[nextLetter] = {};
+        enrolmentsNowArrays[nextLetter] = [];
     }
 
     enrolments.forEach(function(enrolment) {
-        switch (enrolment.school_code.charAt(0)) {
-            case 'A':
-                enrolmentsNowObject['A'][enrolment.id] = enrolment;
-                break;
-            case 'B':
-                enrolmentsNowObject['B'][enrolment.id] = enrolment;
-                break;
-            default:
-                break;
-        }
+        enrolmentsNowObject[enrolment.school_code.charAt(0)][enrolment.id] = enrolment;
     });
 
-    Object.getOwnPropertyNames(enrolmentsNowObject['A']).forEach(function (enrolmentID) {
-        enrolmentsNowArrayA.push(enrolmentsNowObject['A'][enrolmentID]);
-    });
-    Object.getOwnPropertyNames(enrolmentsNowObject['B']).forEach(function (enrolmentID) {
-        enrolmentsNowArrayB.push(enrolmentsNowObject['B'][enrolmentID]);
-    });
+    for (var i = 0; i < alphabet.length; i++) {
+        var nextLetter = alphabet.charAt(i);
+
+        Object.getOwnPropertyNames(enrolmentsNowObject[nextLetter]).forEach(function (enrolmentID) {
+            enrolmentsNowArrays[nextLetter].push(enrolmentsNowObject[nextLetter][enrolmentID]);
+        });
+    }
 
     // Write out arrays and objects to blobs
-    context.bindings.enrolmentsNowArrayA = JSON.stringify(enrolmentsNowArrayA);
+    context.bindings.enrolmentsNowArrayA = JSON.stringify(enrolmentsNowArrays['A']);
     context.bindings.enrolmentsNowObjectA = JSON.stringify(enrolmentsNowObject['A']);
 
-    context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsNowArrayB);
+    context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsNowArrays['B']);
     context.bindings.enrolmentsNowObjectB = JSON.stringify(enrolmentsNowObject['B']);
 
     var event_type = "ca.wrdsb.skinner.trillium.enrolments.split";
