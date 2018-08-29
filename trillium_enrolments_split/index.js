@@ -10,10 +10,10 @@ module.exports = function (context, data) {
 
     enrolments.forEach(function(enrolment) {
         switch (enrolment.school_code.charAt(0)) {
-            case A:
+            case 'A':
                 enrolmentsNowObjectA[enrolment.id] = enrolment;
                 break;
-            case B:
+            case 'B':
                 enrolmentsNowObjectB[enrolment.id] = enrolment;
                 break;
             default:
@@ -35,21 +35,20 @@ module.exports = function (context, data) {
     context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsArray);
     context.bindings.enrolmentsNowObjectB = JSON.stringify(enrolmentsObject);
 
-    var event_type = "ca.wrdsb.skinner.trillium.views.gclassroom.blob.process";
+    var event_type = "ca.wrdsb.skinner.trillium.enrolments.split";
     var event = {
         eventID: `${event_type}-${context.executionContext.invocationId}`,
         eventType: event_type,
-        source: "/trillium/view/gclassroom/process",
-        schemaURL: "ca.wrdsb.skinner.trillium.views.gclassroom.blob.process.json",
+        source: "/trillium/enrolments/split",
+        schemaURL: "ca.wrdsb.skinner.trillium.enrolments.split.json",
         extensions: {
             app: 'wrdsb-skinner',
-            label: "skinner processes trillium_view_gclassroom blob",
+            label: "skinner splits trillium_enrolments blob",
             tags: [
                 "skinner",
                 "trillium",
-                "trillium_view",
-                "trillium_view_gclassroom",
-                "process"
+                "trillium_enrolments",
+                "split"
             ]
         },
         data: {
@@ -58,19 +57,19 @@ module.exports = function (context, data) {
             result: {
                 blobs: [
                     {
-                        path: "trillium/classes-now-array.json",
+                        path: "trillium/enrolments-now-array-a.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
-                        path: "trillium/classes-now-object.json",
+                        path: "trillium/enrolments-now-object-a.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
-                        path: "trillium/enrolments-now-array.json",
+                        path: "trillium/enrolments-now-array-b.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
-                        path: "trillium/enrolments-now-object.json",
+                        path: "trillium/enrolments-now-object-b.json",
                         connection: "wrdsbskinner_STORAGE",
                     }
                 ]
