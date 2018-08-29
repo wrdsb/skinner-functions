@@ -29,11 +29,11 @@ module.exports = function (context, data) {
     });
 
     // Write out arrays and objects to blobs
-    context.bindings.enrolmentsNowArrayA = JSON.stringify(classesArray);
-    context.bindings.enrolmentsNowObjectA = JSON.stringify(classesObject);
+    context.bindings.enrolmentsNowArrayA = JSON.stringify(enrolmentsNowArrayA);
+    context.bindings.enrolmentsNowObjectA = JSON.stringify(enrolmentsNowObjectA);
 
-    context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsArray);
-    context.bindings.enrolmentsNowObjectB = JSON.stringify(enrolmentsObject);
+    context.bindings.enrolmentsNowArrayB = JSON.stringify(enrolmentsNowArrayB);
+    context.bindings.enrolmentsNowObjectB = JSON.stringify(enrolmentsNowObjectB);
 
     var event_type = "ca.wrdsb.skinner.trillium.enrolments.split";
     var event = {
