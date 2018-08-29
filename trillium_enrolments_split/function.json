@@ -1,0 +1,62 @@
+{
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "webHookType": "genericJson",
+        "direction": "in",
+        "methods": [
+          "post"
+        ]
+      },
+      {
+        "name": "enrolmentsNowArray",
+        "type": "blob",
+        "path": "trillium/enrolments-now-array.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "enrolmentsNowArrayA",
+        "type": "blob",
+        "path": "trillium/enrolments-now-array-a.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "enrolmentsNowObjectA",
+        "type": "blob",
+        "path": "trillium/enrolments-now-object-a.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "enrolmentsNowArrayB",
+        "type": "blob",
+        "path": "trillium/enrolments-now-array-b.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "enrolmentsNowObjectB",
+        "type": "blob",
+        "path": "trillium/enrolments-now-object-b.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "flynnGrid",
+        "type": "eventHub",
+        "path": "flynn-events",
+        "connection": "wrdsb-flynn_EVENTHUB",
+        "direction": "out"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }
+  
