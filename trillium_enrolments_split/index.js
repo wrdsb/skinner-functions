@@ -53,11 +53,15 @@ module.exports = function (context, data) {
             result: {
                 blobs: [
                     {
+                        path: "trillium/enrolments-now-object-a.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
                         path: "trillium/enrolments-now-array-a.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
-                        path: "trillium/enrolments-now-object-a.json",
+                        path: "trillium/enrolments-now-object-b.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
@@ -65,7 +69,195 @@ module.exports = function (context, data) {
                         connection: "wrdsbskinner_STORAGE",
                     },
                     {
-                        path: "trillium/enrolments-now-object-b.json",
+                        path: "trillium/enrolments-now-object-c.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-c.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-d.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-d.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-e.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-e.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-f.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-f.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-g.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-g.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-h.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-h.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-i.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-i.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-j.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-j.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-k.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-k.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-l.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-l.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-m.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-m.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-n.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-n.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-o.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-o.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-p.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-p.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-q.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-q.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-r.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-r.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-s.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-s.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-t.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-t.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-u.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-u.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-v.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-v.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-w.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-w.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-x.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-x.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-y.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-y.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-object-z.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/enrolments-now-array-z.json",
                         connection: "wrdsbskinner_STORAGE",
                     },
                 ]
