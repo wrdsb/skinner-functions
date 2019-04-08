@@ -45,6 +45,34 @@
       "direction": "out"
     },
     {
+      "name": "studentsNowArray",
+      "type": "blob",
+      "path": "trillium/students-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "studentsNowObject",
+      "type": "blob",
+      "path": "trillium/students-now-object.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "teachersNowArray",
+      "type": "blob",
+      "path": "trillium/teachers-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "teachersNowObject",
+      "type": "blob",
+      "path": "trillium/teachers-now-object.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "flynnGrid",
       "type": "eventHub",
       "path": "flynn-events",

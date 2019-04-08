@@ -7,6 +7,10 @@ module.exports = function (context, data) {
     var classesArray = [];
     var enrolmentsObject = {};
     var enrolmentsArray = [];
+    var studentsObject = {};
+    var studentsArray = [];
+    var teachersObject = {};
+    var teachersArray = [];
 
     rows.forEach(function(row) {
         var sanitized_class_code = row.CLASS_CODE.replace('/', '-');
@@ -33,9 +37,30 @@ module.exports = function (context, data) {
             teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
         };
 
-        // Add/overwrite classes and enrolments from this row to their collection objects
+        // Extract the 'student' object from the row
+        var studentObject = {
+            id:                 row.STUDENT_NO,
+            student_number:     row.STUDENT_NO,
+            student_email:      row.STUDENT_EMAIL,
+            student_first_name: row.STUDENT_FIRST_NAME,
+            student_last_name:  row.STUDENT_LAST_NAME,
+            school_code:        row.SCHOOL_CODE,
+            student_oyap:       row.OYAP
+        };
+
+        // Extract the 'teacher' object from the row
+        var teacherObject = {
+            id:                 row.TEACHER_EIN ? row.TEACHER_EIN : '0',
+            teacher_ein:        row.TEACHER_EIN ? row.TEACHER_EIN : '0',
+            teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : '0',
+            school_code:        row.SCHOOL_CODE
+        };
+        
+        // Add/overwrite individual objects from this row to their collection objects
         classesObject[classObject.id]        = classObject;
         enrolmentsObject[enrolmentObject.id] = enrolmentObject;
+        studentsObject[studentObject.id]     = studentObject;
+        teachersObject[teacherObject.id]     = teacherObject;
     });
 
     // Add each class from classesObject to classesArray
@@ -48,12 +73,28 @@ module.exports = function (context, data) {
         enrolmentsArray.push(enrolmentsObject[enrolmentID]);
     });
 
+    // Add each student from studentsObject to studentsArray
+    Object.getOwnPropertyNames(studentsObject).forEach(function (studentID) {
+        studentsArray.push(studentsObject[studentID]);
+    });    
+
+    // Add each teacher from teachersObject to teachersArray
+    Object.getOwnPropertyNames(teachersObject).forEach(function (teacherID) {
+        teachersArray.push(teachersObject[teacherID]);
+    });    
+
     // Write out arrays and objects to blobs
     context.bindings.classesNowArray = JSON.stringify(classesArray);
     context.bindings.classesNowObject = JSON.stringify(classesObject);
 
     context.bindings.enrolmentsNowArray = JSON.stringify(enrolmentsArray);
     context.bindings.enrolmentsNowObject = JSON.stringify(enrolmentsObject);
+
+    context.bindings.studentsNowArray = JSON.stringify(studentsArray);
+    context.bindings.studentsNowObject = JSON.stringify(studentsObject);
+
+    context.bindings.teachersNowArray = JSON.stringify(teachersArray);
+    context.bindings.teachersNowObject = JSON.stringify(teachersObject);
 
     var event_type = "ca.wrdsb.skinner.trillium.views.gclassroom.blob.process";
     var event = {
@@ -91,6 +132,22 @@ module.exports = function (context, data) {
                     },
                     {
                         path: "trillium/enrolments-now-object.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/students-now-array.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/students-now-object.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/teachers-now-array.json",
+                        connection: "wrdsbskinner_STORAGE",
+                    },
+                    {
+                        path: "trillium/teachers-now-object.json",
                         connection: "wrdsbskinner_STORAGE",
                     }
                 ]
