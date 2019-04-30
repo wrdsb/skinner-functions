@@ -85,5 +85,6 @@
       "direction": "out"
     }
   ],
-  "disabled": false
+  "disabled": false,
+  "scriptFile": "../dist/view-gclassroom-raw-process/index.js"
 }

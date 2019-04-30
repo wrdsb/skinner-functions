@@ -393,6 +393,7 @@
         "direction": "out"
       }
     ],
-    "disabled": false
+    "disabled": false,
+    "scriptFile": "../dist/trillium-enrolments-split/index.js"
   }
   

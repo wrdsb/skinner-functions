@@ -36,5 +36,6 @@
       "direction": "out"
     }
   ],
-  "disabled": false
+  "disabled": false,
+  "scriptFile": "../dist/view-gclassroom-blob-copy/index.js"
 }
