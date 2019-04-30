@@ -1,22 +1,24 @@
-module.exports = function (context, data) {
-    var execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
+import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
-    var rows = context.bindings.viewRaw;
+const viewGClassroomRawProcess: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+    const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
-    var classesObject = {};
-    var classesArray = [];
-    var enrolmentsObject = {};
-    var enrolmentsArray = [];
-    var studentsObject = {};
-    var studentsArray = [];
-    var teachersObject = {};
-    var teachersArray = [];
+    const rows = context.bindings.viewRaw;
+
+    let classesObject = {};
+    let classesArray = [];
+    let enrolmentsObject = {};
+    let enrolmentsArray = [];
+    let studentsObject = {};
+    let studentsArray = [];
+    let teachersObject = {};
+    let teachersArray = [];
 
     rows.forEach(function(row) {
-        var sanitized_class_code = row.CLASS_CODE.replace('/', '-');
+        let sanitized_class_code = row.CLASS_CODE.replace('/', '-');
 
         // Extract the 'class' object from the row
-        var classObject = {
+        let classObject = {
             id:             row.SCHOOL_CODE + '-' + sanitized_class_code,
             school_code:    row.SCHOOL_CODE,
             class_code:     row.CLASS_CODE,
@@ -25,7 +27,7 @@ module.exports = function (context, data) {
         };
 
         // Extract the 'enrolment' object from the row
-        var enrolmentObject = {
+        let enrolmentObject = {
             id:                 row.SCHOOL_CODE + '-' + sanitized_class_code + '-' + row.STUDENT_NO,
             school_code:        row.SCHOOL_CODE,
             class_code:         row.CLASS_CODE,
@@ -38,7 +40,7 @@ module.exports = function (context, data) {
         };
 
         // Extract the 'student' object from the row
-        var studentObject = {
+        let studentObject = {
             id:                 row.STUDENT_NO,
             student_number:     row.STUDENT_NO,
             student_email:      row.STUDENT_EMAIL,
@@ -49,7 +51,7 @@ module.exports = function (context, data) {
         };
 
         // Extract the 'teacher' object from the row
-        var teacherObject = {
+        let teacherObject = {
             id:                 row.TEACHER_EIN ? row.TEACHER_EIN : '0',
             teacher_ein:        row.TEACHER_EIN ? row.TEACHER_EIN : '0',
             teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : '0',
@@ -96,74 +98,11 @@ module.exports = function (context, data) {
     context.bindings.teachersNowArray = JSON.stringify(teachersArray);
     context.bindings.teachersNowObject = JSON.stringify(teachersObject);
 
-    var event_type = "ca.wrdsb.skinner.trillium.views.gclassroom.blob.process";
-    var event = {
-        eventID: `${event_type}-${context.executionContext.invocationId}`,
-        eventType: event_type,
-        source: "/trillium/view/gclassroom/process",
-        schemaURL: "ca.wrdsb.skinner.trillium.views.gclassroom.blob.process.json",
-        extensions: {
-            app: 'wrdsb-skinner',
-            label: "skinner processes trillium_view_gclassroom blob",
-            tags: [
-                "skinner",
-                "trillium",
-                "trillium_view",
-                "trillium_view_gclassroom",
-                "process"
-            ]
-        },
-        data: {
-            function_name: context.executionContext.functionName,
-            invocation_id: context.executionContext.invocationId,
-            result: {
-                blobs: [
-                    {
-                        path: "trillium/classes-now-array.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/classes-now-object.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/enrolments-now-array.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/enrolments-now-object.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/students-now-array.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/students-now-object.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/teachers-now-array.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    },
-                    {
-                        path: "trillium/teachers-now-object.json",
-                        connection: "wrdsbskinner_STORAGE",
-                    }
-                ]
-            },
-        },
-        eventTime: execution_timestamp,
-        eventTypeVersion: "0.1",
-        cloudEventsVersion: "0.1",
-        contentType: "application/json"
-    };
-
-    context.bindings.flynnGrid = event;
     context.res = {
         status: 200,
-        body: event
+        body: "SUCCESS: ca.wrdsb.skinner.trillium.views.gclassroom.blob.process"
     };
     context.done();
 };
-    
+
+export default viewGClassroomRawProcess;

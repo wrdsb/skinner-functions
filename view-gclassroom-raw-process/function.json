@@ -1,90 +1,84 @@
 {
-  "bindings": [
-    {
-      "name": "req",
-      "type": "httpTrigger",
-      "webHookType": "genericJson",
-      "direction": "in",
-      "methods": [
-        "post"
-      ]
-    },
-    {
-      "name": "viewRaw",
-      "type": "blob",
-      "path": "trillium/view-gclassroom-raw.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "in"
-    },
-    {
-      "name": "classesNowArray",
-      "type": "blob",
-      "path": "trillium/classes-now-array.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "classesNowObject",
-      "type": "blob",
-      "path": "trillium/classes-now-object.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "enrolmentsNowArray",
-      "type": "blob",
-      "path": "trillium/enrolments-now-array.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "enrolmentsNowObject",
-      "type": "blob",
-      "path": "trillium/enrolments-now-object.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "studentsNowArray",
-      "type": "blob",
-      "path": "trillium/students-now-array.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "studentsNowObject",
-      "type": "blob",
-      "path": "trillium/students-now-object.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "teachersNowArray",
-      "type": "blob",
-      "path": "trillium/teachers-now-array.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "teachersNowObject",
-      "type": "blob",
-      "path": "trillium/teachers-now-object.json",
-      "connection": "wrdsbskinner_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "flynnGrid",
-      "type": "eventHub",
-      "path": "flynn-events",
-      "connection": "wrdsb-flynn_EVENTHUB",
-      "direction": "out"
-    },
-    {
-      "name": "res",
-      "type": "http",
-      "direction": "out"
-    }
-  ],
-  "disabled": false,
-  "scriptFile": "../dist/view-gclassroom-raw-process/index.js"
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "direction": "in",
+            "authLevel": "function",
+            "methods": [
+                "get",
+                "post"
+            ]
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "trillium/view-gclassroom-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "classesNowArray",
+            "type": "blob",
+            "path": "trillium/classes-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "classesNowObject",
+            "type": "blob",
+            "path": "trillium/classes-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArray",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObject",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "studentsNowArray",
+            "type": "blob",
+            "path": "trillium/students-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "studentsNowObject",
+            "type": "blob",
+            "path": "trillium/students-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "teachersNowArray",
+            "type": "blob",
+            "path": "trillium/teachers-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "teachersNowObject",
+            "type": "blob",
+            "path": "trillium/teachers-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/view-gclassroom-raw-process/index.js"
 }

@@ -1,399 +1,392 @@
 {
     "bindings": [
-      {
-        "name": "req",
-        "type": "httpTrigger",
-        "webHookType": "genericJson",
-        "direction": "in",
-        "methods": [
-          "post"
-        ]
-      },
-      {
-        "name": "enrolmentsNowArray",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "in"
-      },
-      {
-        "name": "enrolmentsNowObjectA",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-a.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayA",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-a.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectB",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-b.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayB",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-b.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectC",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-c.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayC",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-c.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectD",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-d.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayD",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-d.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectE",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-e.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayE",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-e.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectF",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-f.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayF",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-f.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectG",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-g.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayG",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-g.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectH",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-h.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayH",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-h.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectI",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-i.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayI",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-i.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectJ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-j.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayJ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-j.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectK",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-k.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayK",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-k.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectL",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-l.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayL",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-l.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectM",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-m.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayM",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-m.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectN",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-n.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayN",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-n.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectO",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-o.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayO",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-o.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectP",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-p.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayP",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-p.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectQ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-q.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayQ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-q.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectR",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-r.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayR",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-r.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectS",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-s.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayS",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-s.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectT",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-t.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayT",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-t.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectU",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-u.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayU",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-u.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectV",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-v.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayV",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-v.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectW",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-w.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayW",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-w.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectX",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-x.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayX",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-x.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectY",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-y.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayY",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-y.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowObjectZ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-object-z.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "enrolmentsNowArrayZ",
-        "type": "blob",
-        "path": "trillium/enrolments-now-array-z.json",
-        "connection": "wrdsbskinner_STORAGE",
-        "direction": "out"
-      },
-      {
-        "name": "flynnGrid",
-        "type": "eventHub",
-        "path": "flynn-events",
-        "connection": "wrdsb-flynn_EVENTHUB",
-        "direction": "out"
-      },
-      {
-        "name": "res",
-        "type": "http",
-        "direction": "out"
-      }
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "direction": "in",
+            "authLevel": "function",
+            "methods": [
+                "get",
+                "post"
+            ]
+        },
+        {
+            "name": "enrolmentsNowArray",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "enrolmentsNowObjectA",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-a.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayA",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-a.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectB",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-b.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayB",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-b.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectC",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-c.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayC",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-c.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectD",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-d.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayD",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-d.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectE",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-e.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayE",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-e.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectF",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-f.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayF",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-f.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectG",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-g.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayG",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-g.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectH",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-h.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayH",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-h.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectI",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-i.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayI",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-i.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectJ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-j.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayJ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-j.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectK",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-k.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayK",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-k.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectL",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-l.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayL",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-l.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectM",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-m.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayM",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-m.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectN",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-n.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayN",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-n.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectO",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-o.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayO",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-o.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectP",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-p.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayP",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-p.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectQ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-q.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayQ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-q.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectR",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-r.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayR",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-r.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectS",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-s.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayS",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-s.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectT",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-t.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayT",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-t.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectU",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-u.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayU",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-u.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectV",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-v.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayV",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-v.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectW",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-w.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayW",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-w.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectX",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-x.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayX",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-x.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectY",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-y.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayY",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-y.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowObjectZ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-z.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "enrolmentsNowArrayZ",
+            "type": "blob",
+            "path": "trillium/enrolments-now-array-z.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
     ],
     "disabled": false,
     "scriptFile": "../dist/trillium-enrolments-split/index.js"
-  }
-  
+}
