@@ -1,10 +1,10 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const enrolmentReplace: AzureFunction = async function (context: Context, queueMessage: string): Promise<void> {
+const enrolmentReplace: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let new_record = JSON.parse(queueMessage);
+    let new_record = JSON.parse(triggerMessage);
 
     if (!old_record) { old_record = {}; }
 
@@ -39,10 +39,7 @@ const enrolmentReplace: AzureFunction = async function (context: Context, queueM
         dataVersion: '1'
     };
 
-    context.res = {
-        status: 200,
-        body: event
-    };
+    context.bindings.callbackMessage = JSON.stringify(event);
 
     context.log(JSON.stringify(event));
     context.done(null, JSON.stringify(event));

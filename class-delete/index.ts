@@ -1,20 +1,13 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumClassDelete: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const trilliumClassDelete: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
 
     // check for existing record
     if (!old_record) {
-        let error = "Record not found.";
-
-        context.res = {
-            status: 404,
-            body: error
-        };
-        context.log(JSON.stringify(error));
-        context.done(error);
+        old_record = JSON.parse(triggerMessage);
     }
 
     // not really a copy, just another reference
@@ -47,10 +40,7 @@ const trilliumClassDelete: AzureFunction = async function (context: Context, req
         dataVersion: '1'
     };
 
-    context.res = {
-        status: 200,
-        body: event
-    };
+    context.bindings.callbackMessage = JSON.stringify(event);
 
     context.log(JSON.stringify(event));
     context.done(null, JSON.stringify(event));
