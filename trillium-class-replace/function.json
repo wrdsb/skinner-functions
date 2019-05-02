@@ -1,0 +1,38 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "direction": "in",
+            "authLevel": "function",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "skinner",
+            "collectionName": "classes",
+            "id": "{id}",
+            "connection": "wrdsb-skinner_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "skinner",
+            "collectionName": "classes",
+            "createIfNotExists": true,
+            "connection": "wrdsb-skinner_CosmosDB",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/trillium-class-replace/index.js"
+}

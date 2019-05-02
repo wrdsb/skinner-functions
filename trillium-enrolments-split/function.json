@@ -6,7 +6,6 @@
             "direction": "in",
             "authLevel": "function",
             "methods": [
-                "get",
                 "post"
             ]
         },
