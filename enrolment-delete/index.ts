@@ -1,6 +1,6 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumEnrolmentDelete: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const trilliumEnrolmentDelete: AzureFunction = async function (context: Context, queueMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;

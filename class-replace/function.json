@@ -1,13 +1,11 @@
 {
     "bindings": [
         {
-            "name": "req",
-            "type": "httpTrigger",
+            "name": "queueMessage",
+            "type": "queueTrigger",
             "direction": "in",
-            "authLevel": "function",
-            "methods": [
-                "post"
-            ]
+            "queueName": "class-replace",
+            "connection": "wrdsbskinnerts_STORAGE"
         },
         {
             "name": "recordIn",
@@ -34,5 +32,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/trillium-class-replace/index.js"
+    "scriptFile": "../dist/class-replace/index.js"
 }

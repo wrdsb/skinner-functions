@@ -1,16 +1,17 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumClassPatch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const trilliumClassPatch: AzureFunction = async function (context: Context, queueMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
+    let patch = JSON.parse(queueMessage);
     let new_record;
 
     if (old_record) {
         // Merge request object into current record
-        new_record = Object.assign(old_record, req.body);
+        new_record = Object.assign(old_record, patch);
     } else {
-        new_record = req.body;
+        new_record = patch;
         new_record.created_at = execution_timestamp;
     }
     
