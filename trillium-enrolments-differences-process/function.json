@@ -1,0 +1,48 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "direction": "in",
+            "authLevel": "function",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "recordsDifferences",
+            "type": "blob",
+            "path": "trillium/enrolments-differences-{alpha}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "queueCreates",
+            "type": "queue",
+            "queueName": "trillium-enrolment-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueUpdates",
+            "type": "queue",
+            "queueName": "trillium-enrolment-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueDeletes",
+            "type": "queue",
+            "queueName": "trillium-enrolment-delete",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/trillium-enrolments-differences-process/index.js"
+}
