@@ -1,13 +1,11 @@
 {
     "bindings": [
         {
-            "name": "req",
-            "type": "httpTrigger",
+            "name": "triggerMessage",
+            "type": "queueTrigger",
             "direction": "in",
-            "authLevel": "function",
-            "methods": [
-                "post"
-            ]
+            "queueName": "trillium-enrolments-reconcile",
+            "connection": "wrdsbskinner_STORAGE"
         },
         {
             "name": "recordsNow",
@@ -54,16 +52,18 @@
         {
             "name": "logCalculation",
             "type": "blob",
-            "path": "trillium/trillium-enrolments-reconcile-current-{alpha}.json",
+            "path": "trillium/trillium-enrolments-reconcile-{alpha}.json",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
-            "name": "res",
-            "type": "http",
-            "direction": "out"
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/trillium-enrolments-reconcile-current-alpha/index.js"
+    "scriptFile": "../dist/trillium-enrolments-reconcile/index.js"
 }

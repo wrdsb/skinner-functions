@@ -1,10 +1,10 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { isEqual } from "lodash";
 
-const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
-    const alpha = req.body.alpha;
+    const alpha = context.bindings.triggerMessage.alpha;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -51,11 +51,9 @@ const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (c
     context.bindings.recordsPreviousOut = context.bindings.recordsNow;
     context.bindings.logCalculation = JSON.stringify(calculation);
 
-    context.res = {
-        status: 200,
-        body: JSON.stringify(callbackMessage)
-    };
+    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
 
+    context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
 
     async function findCreatesAndUpdates(calculation)
