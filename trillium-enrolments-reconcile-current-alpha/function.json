@@ -1,0 +1,69 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "direction": "in",
+            "authLevel": "function",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "recordsNow",
+            "type": "blob",
+            "path": "trillium/enrolments-now-object-{alpha}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordsDifferences",
+            "type": "blob",
+            "path": "trillium/enrolments-differences-{alpha}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "recordsPreviousOut",
+            "type": "blob",
+            "path": "trillium/enrolments-previous-{alpha}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueCreates",
+            "type": "queue",
+            "queueName": "enrolment-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueUpdates",
+            "type": "queue",
+            "queueName": "enrolment-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueDeletes",
+            "type": "queue",
+            "queueName": "enrolment-delete",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "logCalculation",
+            "type": "blob",
+            "path": "trillium/trillium-enrolments-reconcile-current-{alpha}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/trillium-enrolments-reconcile-current-alpha/index.js"
+}
