@@ -230,6 +230,7 @@ const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (c
                     student_email: item.student_email,
                     teacher_ein: item.teacher_ein,
                     teacher_email: item.teacher_email
+
                     // these fields are not present in the data from trillium
                     //created_at: item.created_at,
                     //updated_at: item.updated_at,
