@@ -14,6 +14,8 @@ const trilliumEnrolmentsDifferencesProcess: AzureFunction = async function (cont
     context.bindings.queueUpdates = updates;
     context.bindings.queueDeletes = deletes;
 
+    context.done(null, 'SUCCESS');
+
     async function processCreates(differences) {
         // array for the results being returned
         let messages = [];
