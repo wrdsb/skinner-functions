@@ -5,7 +5,7 @@
             "type": "queueTrigger",
             "direction": "in",
             "queueName": "enrolment-patch",
-            "connection": "wrdsbskinnerts_STORAGE"
+            "connection": "wrdsbskinner_STORAGE"
         },
         {
             "name": "recordIn",
@@ -13,7 +13,8 @@
             "databaseName": "skinner",
             "collectionName": "enrolments",
             "id": "{id}",
-            "connection": "wrdsb-skinner_CosmosDB",
+            "partitionKey": "{id}",
+            "connectionStringSetting": "wrdsb-skinner_CosmosDB",
             "direction": "in"
         },
         {
@@ -21,8 +22,7 @@
             "type": "cosmosDB",
             "databaseName": "skinner",
             "collectionName": "enrolments",
-            "createIfNotExists": true,
-            "connection": "wrdsb-skinner_CosmosDB",
+            "connectionStringSetting": "wrdsb-skinner_CosmosDB",
             "direction": "out"
         },
         {
@@ -30,7 +30,7 @@
             "type": "queue",
             "direction": "out",
             "queueName": "callbacks",
-            "connection": "wrdsb-skinner_CosmosDB"
+            "connection": "wrdsbskinner_STORAGE"
         }
     ],
     "disabled": false,
