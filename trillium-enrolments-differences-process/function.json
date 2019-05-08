@@ -19,21 +19,21 @@
         {
             "name": "queueCreates",
             "type": "queue",
-            "queueName": "trillium-enrolment-replace",
+            "queueName": "enrolment-replace",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
             "name": "queueUpdates",
             "type": "queue",
-            "queueName": "trillium-enrolment-replace",
+            "queueName": "enrolment-replace",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
             "name": "queueDeletes",
             "type": "queue",
-            "queueName": "trillium-enrolment-delete",
+            "queueName": "enrolment-delete",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
