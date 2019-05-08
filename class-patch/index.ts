@@ -4,7 +4,7 @@ const trilliumClassPatch: AzureFunction = async function (context: Context, trig
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let patch = JSON.parse(triggerMessage);
+    let patch = context.bindings.triggerMessage;
     let new_record;
 
     if (old_record) {

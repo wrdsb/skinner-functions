@@ -7,7 +7,7 @@ const trilliumClassDelete: AzureFunction = async function (context: Context, tri
 
     // check for existing record
     if (!old_record) {
-        old_record = JSON.parse(triggerMessage);
+        old_record = context.bindings.triggerMessage;
     }
 
     // not really a copy, just another reference
