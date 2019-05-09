@@ -1,0 +1,69 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "sis-classes-reconcile",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "recordsNow",
+            "type": "blob",
+            "path": "trillium/classes-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordsDifferences",
+            "type": "blob",
+            "path": "trillium/classes-differences.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "recordsPrevious",
+            "type": "blob",
+            "path": "trillium/classes-previous.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueCreates",
+            "type": "queue",
+            "queueName": "class-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueUpdates",
+            "type": "queue",
+            "queueName": "class-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueDeletes",
+            "type": "queue",
+            "queueName": "class-delete",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "logCalculation",
+            "type": "blob",
+            "path": "trillium/trillium-classes-reconcile.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/sis-classes-reconcile/index.js"
+}
