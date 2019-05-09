@@ -4,7 +4,7 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "trillium-enrolments-reconcile",
+            "queueName": "sis-enrolments-reconcile",
             "connection": "wrdsbskinner_STORAGE"
         },
         {
@@ -22,7 +22,7 @@
             "direction": "out"
         },
         {
-            "name": "recordsPreviousOut",
+            "name": "recordsPrevious",
             "type": "blob",
             "path": "trillium/enrolments-previous-{alpha}.json",
             "connection": "wrdsbskinner_STORAGE",
@@ -65,5 +65,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/trillium-enrolments-reconcile/index.js"
+    "scriptFile": "../dist/sis-enrolments-reconcile/index.js"
 }

@@ -2,14 +2,14 @@ import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { isEqual } from "lodash";
 
-const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
     const alpha = context.bindings.triggerMessage.alpha;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = process.env['cosmosContainer'];
+    const cosmosContainer = 'enrolments';
 
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, auth: {masterKey: cosmosKey}});
 
@@ -48,7 +48,7 @@ const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (c
     context.bindings.queueDeletes = deletes;
 
     context.bindings.recordsDifferences = calculation.differences;
-    context.bindings.recordsPreviousOut = context.bindings.recordsNow;
+    context.bindings.recordsPrevious = context.bindings.recordsNow;
     context.bindings.logCalculation = JSON.stringify(calculation);
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
@@ -243,4 +243,4 @@ const trilliumEnrolmentsReconcileCurrentAlpha: AzureFunction = async function (c
     }
 };
 
-export default trilliumEnrolmentsReconcileCurrentAlpha;
+export default sisEnrolmentsReconcile;
