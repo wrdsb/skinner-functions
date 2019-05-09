@@ -1,9 +1,12 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 
-const viewGClassroomRawProcess: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const viewGClassroomProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    const rows = context.bindings.viewRaw;
+    const panamaBlob = context.bindings.panamaBlob;
+
+    const rows = panamaBlob;
 
     let classesObject = {};
     let classesArray = [];
@@ -13,6 +16,16 @@ const viewGClassroomRawProcess: AzureFunction = async function (context: Context
     let studentsArray = [];
     let teachersObject = {};
     let teachersArray = [];
+
+    let enrolmentsSortedObject = {};
+    let enrolmentsSortedArrays = {};
+
+    for (let i = 0; i < alphabet.length; i++) {
+        let nextLetter = alphabet.charAt(i);
+        
+        enrolmentsSortedObject[nextLetter] = {};
+        enrolmentsSortedArrays[nextLetter] = [];
+    }
 
     rows.forEach(function(row) {
         let sanitized_class_code = row.CLASS_CODE.replace('/', '-');
@@ -85,12 +98,31 @@ const viewGClassroomRawProcess: AzureFunction = async function (context: Context
         teachersArray.push(teachersObject[teacherID]);
     });    
 
+    enrolmentsArray.forEach(function(enrolment) {
+        enrolmentsSortedObject[enrolment.school_code.charAt(0)][enrolment.id] = enrolment;
+    });
+
+    for (let i = 0; i < alphabet.length; i++) {
+        let letter = alphabet.charAt(i);
+
+        Object.getOwnPropertyNames(enrolmentsSortedObject[letter]).forEach(function (enrolmentID) {
+            enrolmentsSortedArrays[letter].push(enrolmentsSortedObject[letter][enrolmentID]);
+        });
+
+        // Write out arrays and objects to blobs
+        context.bindings['enrolmentsNowArray'+letter] = JSON.stringify(enrolmentsSortedArrays[letter]);
+        context.bindings['enrolmentsSortedObject'+letter] = JSON.stringify(enrolmentsSortedObject[letter]);
+    }
+
+    // Write out Skinner's local copy of Panama's raw data
+    context.bindings.viewRaw = JSON.stringify(panamaBlob);
+
     // Write out arrays and objects to blobs
     context.bindings.classesNowArray = JSON.stringify(classesArray);
     context.bindings.classesNowObject = JSON.stringify(classesObject);
 
     context.bindings.enrolmentsNowArray = JSON.stringify(enrolmentsArray);
-    context.bindings.enrolmentsNowObject = JSON.stringify(enrolmentsObject);
+    context.bindings.enrolmentsSortedObject = JSON.stringify(enrolmentsObject);
 
     context.bindings.studentsNowArray = JSON.stringify(studentsArray);
     context.bindings.studentsNowObject = JSON.stringify(studentsObject);
@@ -98,11 +130,27 @@ const viewGClassroomRawProcess: AzureFunction = async function (context: Context
     context.bindings.teachersNowArray = JSON.stringify(teachersArray);
     context.bindings.teachersNowObject = JSON.stringify(teachersObject);
 
-    context.res = {
-        status: 200,
-        body: "SUCCESS: ca.wrdsb.skinner.trillium.views.gclassroom.blob.process"
+    let callbackMessage = {
+        id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
+        eventType: 'Skinner.View.GClassroom.Process',
+        eventTime: execution_timestamp,
+        //subject: ,
+        data: {
+            event_type: 'function_invocation',
+            app: 'wrdsb-skinner',
+            function_name: context.executionContext.functionName,
+            invocation_id: context.executionContext.invocationId,
+            data: {
+            },
+            timestamp: execution_timestamp
+        },
+        dataVersion: '1'
     };
-    context.done();
+
+    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
+
+    context.log(JSON.stringify(callbackMessage));
+    context.done(null, callbackMessage);
 };
 
-export default viewGClassroomRawProcess;
+export default viewGClassroomProcess;
