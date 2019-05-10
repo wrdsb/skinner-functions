@@ -52,7 +52,7 @@
         {
             "name": "logCalculation",
             "type": "blob",
-            "path": "trillium/trillium-classes-reconcile.json",
+            "path": "trillium/sis-classes-reconcile.json",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
