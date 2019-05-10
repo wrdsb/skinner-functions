@@ -28,7 +28,7 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     }
 
     rows.forEach(function(row) {
-        let sanitized_class_code = row.CLASS_CODE.replace('/', '-');
+        let sanitized_class_code = row.CLASS_CODE.split("\/").join("-");
 
         // Extract the 'class' object from the row
         let classObject = {

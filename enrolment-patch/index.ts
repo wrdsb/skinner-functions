@@ -20,8 +20,8 @@ const trilliumEnrolmentPatch: AzureFunction = async function (context: Context, 
     new_record.deleted = false;
 
     // We use the Enrolment's school_code, class_code, and student_number as the Cosmos DB record's id
-    new_record.id = new_record.school_code + '-' + new_record.class_code + '-' + new_record.student_number;
-    new_record.id = new_record.id.replace('/', '-');
+    //let sanitized_class_code = new_record.class_code.replace('/', '-');
+    //new_record.id = new_record.school_code + '-' + sanitized_class_code + '-' + new_record.student_number;
 
     // Simply write data to database, regardless of what might already be there
     context.bindings.recordOut = new_record;
