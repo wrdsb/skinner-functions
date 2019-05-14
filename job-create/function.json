@@ -1,0 +1,40 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "authLevel": "function",
+            "type": "httpTrigger",
+            "direction": "in",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "viewGClassroomProcessTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisClassesReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-classes-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisEnrolmentsReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-enrolments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/job-create/index.js"
+}
