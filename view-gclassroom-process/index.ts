@@ -28,47 +28,62 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     }
 
     rows.forEach(function(row) {
-        let sanitized_class_code = row.CLASS_CODE.split("\/").join("-");
+        let school_code        = row.SCHOOL_CODE;
+        let class_code         = row.CLASS_CODE;
+
+        let student_number     = row.STUDENT_NO;
+        let student_first_name = row.STUDENT_FIRST_NAME;
+        let student_last_name  = row.STUDENT_LAST_NAME;
+        let student_email      = row.STUDENT_EMAIL;
+        let student_oyap       = row.OYAP;
+
+        let teacher_ein        = row.TEACHER_EIN ? row.TEACHER_EIN : '0';
+        let teacher_email      = row.TEACHER_EMAIL ? row.TEACHER_EMAIL : '0';
+
+        let classObjectID     = sanitizeID(`${school_code}-${class_code}`);
+        let enrolmentObjectID = sanitizeID(`${classObjectID}-${student_number}`);
+        let studentObjectID   = sanitizeID(student_number);
+        let teacherObjectID   = sanitizeID(teacher_ein);
 
         // Extract the 'class' object from the row
         let classObject = {
-            id:             row.SCHOOL_CODE + '-' + sanitized_class_code,
-            school_code:    row.SCHOOL_CODE,
-            class_code:     row.CLASS_CODE,
-            teacher_ein:    row.TEACHER_EIN ? row.TEACHER_EIN : '',
-            teacher_email:  row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
+            id:             classObjectID,
+            school_code:    school_code,
+            class_code:     class_code,
+            teacher_ein:    teacher_ein,
+            teacher_email:  teacher_email
         };
 
         // Extract the 'enrolment' object from the row
         let enrolmentObject = {
-            id:                 row.SCHOOL_CODE + '-' + sanitized_class_code + '-' + row.STUDENT_NO,
-            school_code:        row.SCHOOL_CODE,
-            class_code:         row.CLASS_CODE,
-            student_number:     row.STUDENT_NO,
-            student_first_name: row.STUDENT_FIRST_NAME,
-            student_last_name:  row.STUDENT_LAST_NAME,
-            student_email:      row.STUDENT_EMAIL,
-            teacher_ein:        row.TEACHER_EIN ? row.TEACHER_EIN : '',
-            teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : ''
+            id:                 enrolmentObjectID,
+            school_code:        school_code,
+            class_code:         class_code,
+            student_number:     student_number,
+            student_first_name: student_first_name,
+            student_last_name:  student_last_name,
+            student_email:      student_email,
+            teacher_ein:        teacher_ein,
+            teacher_email:      teacher_email
         };
 
         // Extract the 'student' object from the row
         let studentObject = {
-            id:                 row.STUDENT_NO,
-            student_number:     row.STUDENT_NO,
-            student_email:      row.STUDENT_EMAIL,
-            student_first_name: row.STUDENT_FIRST_NAME,
-            student_last_name:  row.STUDENT_LAST_NAME,
-            school_code:        row.SCHOOL_CODE,
-            student_oyap:       row.OYAP
+            id:                 studentObjectID,
+            student_number:     student_number,
+            student_email:      student_email,
+            student_first_name: student_first_name,
+            student_last_name:  student_last_name,
+            school_code:        school_code,
+            student_oyap:       student_oyap
         };
 
         // Extract the 'teacher' object from the row
         let teacherObject = {
-            id:                 row.TEACHER_EIN ? row.TEACHER_EIN : '0',
-            teacher_ein:        row.TEACHER_EIN ? row.TEACHER_EIN : '0',
-            teacher_email:      row.TEACHER_EMAIL ? row.TEACHER_EMAIL : '0',
-            school_code:        row.SCHOOL_CODE
+            id:                 teacherObjectID,
+            teacher_ein:        teacher_ein,
+            teacher_email:      teacher_email,
+            school_code:        school_code
         };
         
         // Add/overwrite individual objects from this row to their collection objects
@@ -108,10 +123,6 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
         Object.getOwnPropertyNames(enrolmentsSortedObject[letter]).forEach(function (enrolmentID) {
             enrolmentsSortedArrays[letter].push(enrolmentsSortedObject[letter][enrolmentID]);
         });
-
-        // Write out arrays and objects to blobs
-        context.bindings['enrolmentsNowArray'+letter] = JSON.stringify(enrolmentsSortedArrays[letter]);
-        context.bindings['enrolmentsSortedObject'+letter] = JSON.stringify(enrolmentsSortedObject[letter]);
     }
 
     // Write out Skinner's local copy of Panama's raw data
@@ -121,8 +132,8 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     context.bindings.classesNowArray = JSON.stringify(classesArray);
     context.bindings.classesNowObject = JSON.stringify(classesObject);
 
-    context.bindings.enrolmentsNowArray = JSON.stringify(enrolmentsArray);
-    context.bindings.enrolmentsSortedObject = JSON.stringify(enrolmentsObject);
+    context.bindings.enrolmentsNowSortedArrays = JSON.stringify(enrolmentsSortedArrays);
+    context.bindings.enrolmentsNowSortedObject = JSON.stringify(enrolmentsSortedObject);
 
     context.bindings.studentsNowArray = JSON.stringify(studentsArray);
     context.bindings.studentsNowObject = JSON.stringify(studentsObject);
@@ -140,17 +151,29 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
             app: 'wrdsb-skinner',
             function_name: context.executionContext.functionName,
             invocation_id: context.executionContext.invocationId,
-            data: {
-            },
+            data: {},
             timestamp: execution_timestamp
         },
         dataVersion: '1'
     };
 
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
+    context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
 
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
+
+    function sanitizeID(id)
+    {
+        while (id.includes("/")) {
+            id = id.split("/").join("-");
+        }
+
+        while (id.includes("\/")) {
+            id = id.split("\/").join("-");
+        }
+
+        return id;
+    }
 };
 
 export default viewGClassroomProcess;
