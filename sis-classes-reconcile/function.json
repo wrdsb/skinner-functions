@@ -15,20 +15,6 @@
             "direction": "in"
         },
         {
-            "name": "recordsDifferences",
-            "type": "blob",
-            "path": "trillium/classes-differences.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "recordsPrevious",
-            "type": "blob",
-            "path": "trillium/classes-previous.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
             "name": "queueCreates",
             "type": "queue",
             "queueName": "class-replace",

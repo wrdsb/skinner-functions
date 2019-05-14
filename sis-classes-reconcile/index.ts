@@ -46,8 +46,6 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
     context.bindings.queueUpdates = updates;
     context.bindings.queueDeletes = deletes;
 
-    context.bindings.recordsDifferences = calculation.differences;
-    context.bindings.recordsPrevious = context.bindings.recordsNow;
     context.bindings.logCalculation = JSON.stringify(calculation);
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
