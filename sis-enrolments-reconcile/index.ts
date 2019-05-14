@@ -5,6 +5,7 @@ import { isEqual } from "lodash";
 const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
     const alpha = context.bindings.triggerMessage.alpha;
+    const alphaUpcase =  alpha.toUpperCase();
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -14,7 +15,7 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, auth: {masterKey: cosmosKey}});
 
     // give our bindings more human-readable names
-    const records_now = context.bindings.recordsNow;
+    const records_now = context.bindings.recordsNow[alphaUpcase];
 
     // fetch current records from Cosmos
     const records_previous = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, alpha).catch(err => {
@@ -47,8 +48,6 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
     context.bindings.queueUpdates = updates;
     context.bindings.queueDeletes = deletes;
 
-    context.bindings.recordsDifferences = calculation.differences;
-    context.bindings.recordsPrevious = context.bindings.recordsNow;
     context.bindings.logCalculation = JSON.stringify(calculation);
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
@@ -63,13 +62,19 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
         let records_previous = calculation.records_previous;
         let records_now = calculation.records_now;
 
+        if (!records_now) {
+            return calculation;
+        }
+
         // loop through all records in records_now, looking for updates and creates
         Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
             let new_record = records_now[record_id];      // get the full person record from records_now
-            let old_record = records_previous[record_id]; // get the corresponding record in records_previous
+
+            if (!records_previous || !records_previous[record_id]) {
+                calculation.differences.created_records.push(new_record);
+            } else {
+                let old_record = records_previous[record_id]; // get the corresponding record in records_previous
     
-            // if we found a corresponding record in records_previous, look for changes
-            if (old_record) {
                 // Compare old and new records using Lodash _.isEqual, which performs a deep comparison
                 let records_equal = isEqual(old_record, new_record);
     
@@ -80,10 +85,6 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
                         now: new_record
                     });
                 }
-   
-            // if we don't find a corresponding record in records_previous, they're new
-            } else {
-                calculation.differences.created_records.push(new_record);
             }
         });
         return calculation;
@@ -96,12 +97,13 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
         let records_previous = calculation.records_previous;
         let records_now = calculation.records_now;
 
+        if (!records_previous) {
+            return calculation;
+        }
+
         // loop through all records in records_previous, looking for deletes
         Object.getOwnPropertyNames(records_previous).forEach(function (record_id) {
-            let new_record = records_now[record_id];
-    
-            if (!new_record) {
-                // the record was deleted
+            if (!records_now || !records_now[record_id]) {
                 calculation.differences.deleted_records.push(records_previous[record_id]);
             }
         });

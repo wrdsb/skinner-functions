@@ -10,23 +10,9 @@
         {
             "name": "recordsNow",
             "type": "blob",
-            "path": "trillium/enrolments-now-object-{alpha}.json",
+            "path": "trillium/enrolments-now-sorted-object.json",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "in"
-        },
-        {
-            "name": "recordsDifferences",
-            "type": "blob",
-            "path": "trillium/enrolments-differences-{alpha}.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "recordsPrevious",
-            "type": "blob",
-            "path": "trillium/enrolments-previous-{alpha}.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
         },
         {
             "name": "queueCreates",
