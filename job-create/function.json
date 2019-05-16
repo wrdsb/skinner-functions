@@ -36,5 +36,6 @@
             "direction": "out"
         }
     ],
+    "disabled": false,
     "scriptFile": "../dist/job-create/index.js"
 }
