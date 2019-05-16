@@ -2,12 +2,12 @@
     "bindings": [
         {
             "name": "req",
-            "authLevel": "function",
             "type": "httpTrigger",
-            "direction": "in",
+            "authLevel": "function",
             "methods": [
                 "post"
-            ]
+            ],
+            "direction": "in"
         },
         {
             "name": "viewGClassroomProcessTrigger",
