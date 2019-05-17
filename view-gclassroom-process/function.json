@@ -3,9 +3,9 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "direction": "in",
             "queueName": "view-gclassroom-process",
-            "connection": "wrdsbskinner_STORAGE"
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
         },
         {
             "name": "panamaBlob",
