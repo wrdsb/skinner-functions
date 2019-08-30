@@ -83,6 +83,20 @@
             "direction": "out",
             "queueName": "callbacks",
             "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerSISClassesReconcile",
+            "type": "queue",
+            "queueName": "sis-classes-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerSISEnrolmentsReconcile",
+            "type": "queue",
+            "queueName": "sis-enrolments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
         }
     ],
     "disabled": false,

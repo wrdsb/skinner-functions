@@ -41,6 +41,13 @@
             "direction": "out",
             "queueName": "callbacks",
             "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerSISStaffReconcile",
+            "type": "queue",
+            "queueName": "sis-staff-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
         }
     ],
     "disabled": false,

@@ -56,6 +56,8 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
 
+    context.bindings.triggerSISStaffReconcile = JSON.stringify(callbackMessage;
+
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
 };

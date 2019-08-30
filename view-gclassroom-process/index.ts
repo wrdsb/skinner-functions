@@ -159,6 +159,9 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
 
+    context.bindings.triggerSISClassesReconcile = JSON.stringify(callbackMessage);
+    context.bindings.triggerSISEnrolmentsReconcile = JSON.stringify(callbackMessage);
+
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
 
