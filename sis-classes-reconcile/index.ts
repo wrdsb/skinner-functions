@@ -64,7 +64,9 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
         // loop through all records in records_now, looking for updates and creates
         Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
             let new_record = records_now[record_id];      // get the full class record from records_now
-            new_record.teacher_name = people_now[new_record.teacher_ein].name;
+            if (new_record.teacher_ein && people_now[new_record.teacher_ein] && people_now[new_record.teacher_ein].name) {
+                new_record.teacher_name = people_now[new_record.teacher_ein].name;
+            }
             let old_record = records_previous[record_id]; // get the corresponding record in records_previous
     
             // if we found a corresponding record in records_previous, look for changes
