@@ -8,10 +8,17 @@
             "connection": "wrdsbskinner_STORAGE"
         },
         {
-            "name": "recordsNow",
+            "name": "classesNow",
             "type": "blob",
             "path": "trillium/classes-now-object.json",
             "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "peopleNow",
+            "type": "blob",
+            "path": "hris/people-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {

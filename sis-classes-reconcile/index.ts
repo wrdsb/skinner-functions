@@ -13,7 +13,8 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, auth: {masterKey: cosmosKey}});
 
     // give our bindings more human-readable names
-    const records_now = context.bindings.recordsNow;
+    const records_now = context.bindings.classesNow;
+    const people_now = context.bindings.peopleNow;
 
     // fetch current records from Cosmos
     const records_previous = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
@@ -62,7 +63,8 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
 
         // loop through all records in records_now, looking for updates and creates
         Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
-            let new_record = records_now[record_id];      // get the full person record from records_now
+            let new_record = records_now[record_id];      // get the full class record from records_now
+            new_record.teacher_name = people_now[new_record.teacher_ein].name;
             let old_record = records_previous[record_id]; // get the corresponding record in records_previous
     
             // if we found a corresponding record in records_previous, look for changes
