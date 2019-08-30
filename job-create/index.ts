@@ -18,6 +18,16 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
 
                 break;
 
+            case "Skinner.View.SkinnerStaff.Process":
+                context.bindings.viewSkinnerStaffProcessTrigger = createSkinnerViewSkinnerStaffProcessJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.SkinnerStaff.Process job."
+                };
+
+                break;
+
             case "Skinner.Class.Differences.Reconcile":
                 context.bindings.sisClassesReconcileTrigger = createSkinnerClassDifferencesReconcileJob();
 
@@ -48,6 +58,16 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
 
                 break;
 
+            case "Skinner.Staff.Differences.Reconcile":
+                context.bindings.sisStaffReconcileTrigger = createSkinnerStaffDifferencesReconcileJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.Staff.Differences.Reconcile.All job."
+                };
+
+                break;
+    
             default:
                 context.res = {
                     status: 422,
@@ -65,6 +85,13 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
     }
 
     function createSkinnerViewGClassroomProcessJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerViewSkinnerStaffProcessJob(): string
     {
         let triggerMessage = {};
 
@@ -100,6 +127,13 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
         }
 
         return triggerMessages;
+    }
+
+    function createSkinnerStaffDifferencesReconcileJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
     }
 };
 

@@ -17,6 +17,13 @@
             "direction": "out"
         },
         {
+            "name": "viewSkinnerStaffProcessTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerstaff-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "sisClassesReconcileTrigger",
             "type": "queue",
             "queueName": "sis-classes-reconcile",
@@ -27,6 +34,13 @@
             "name": "sisEnrolmentsReconcileTrigger",
             "type": "queue",
             "queueName": "sis-enrolments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisStaffReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-staff-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
