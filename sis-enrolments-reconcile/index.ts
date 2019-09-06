@@ -22,6 +22,8 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
         context.log(err);
     });
 
+    context.log('Reconcile enrolments for ' + alphaUpcase + ': ' + Object.getOwnPropertyNames(records_previous).length);
+
     // object to store our total diff as we build it
     let calculation = {
         records_previous: records_previous,
@@ -193,7 +195,7 @@ const sisEnrolmentsReconcile: AzureFunction = async function (context: Context, 
         let alphaUpcase =  alpha.toUpperCase();
 
         const querySpec = {
-            query: `SELECT * FROM c WHERE startswith(c.id, "${alphaUpcase}")`
+            query: `SELECT * FROM c WHERE startswith(c.id, "${alphaUpcase}") and c.deleted = false`
         }
         const queryOptions  = {
             maxItemCount: -1,
