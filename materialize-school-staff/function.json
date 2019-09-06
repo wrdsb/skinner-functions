@@ -15,6 +15,13 @@
             "direction": "in"
         },
         {
+            "name": "allSchools",
+            "type": "blob",
+            "path": "school-staff/000-all-schools.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "logObject",
             "type": "blob",
             "path": "logs/materialize-school-staff.json",

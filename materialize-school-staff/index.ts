@@ -32,17 +32,17 @@ const materializeSchoolStaff: AzureFunction = async function (context: Context, 
 
     recordsNow.forEach(record => {
         logObject.totalRecords++;
-        if (blobsObject[record.schoolCode]) {
-            blobsObject[record.schoolCode].push(record);
+        if (blobsObject[record.school_code]) {
+            blobsObject[record.school_code].push(record);
         } else {
-            blobsObject[record.schoolCode] = [];
-            blobsObject[record.schoolCode].push(record);
+            blobsObject[record.school_code] = [];
+            blobsObject[record.school_code].push(record);
         }
     });
 
-    Object.getOwnPropertyNames(blobsObject).forEach(schoolCode => {
+    Object.getOwnPropertyNames(blobsObject).forEach(async schoolCode => {
         logObject.totalBlobs++;
-        let uploadResponse = createBlob(containerURL, schoolCode, JSON.stringify(blobsObject[schoolCode]));
+        let uploadResponse = await createBlob(containerURL, schoolCode, blobsObject[schoolCode]);
         logObject.uploadsStatus.push(uploadResponse);
     });
 
@@ -50,15 +50,16 @@ const materializeSchoolStaff: AzureFunction = async function (context: Context, 
 
     let callbackMessage = await createEvent(logObject);
 
+    context.bindings.allSchools = blobsObject;
     context.bindings.logObject = JSON.stringify(logObject);
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
 
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
 
-    async function createBlob(containerURL, schoolCode, data)
+    async function createBlob(containerURL, schoolCode: string, data)
     {
-        const blobName = schoolCode + '.json';
+        const blobName = schoolCode.toLowerCase() + '-school-staff.json';
         const blobURL = BlobURL.fromContainerURL(containerURL, blobName);
         const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
         
