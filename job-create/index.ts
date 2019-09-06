@@ -18,6 +18,46 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
 
                 break;
 
+            case "Skinner.View.GClassroom.Extract.Classes":
+                context.bindings.viewGClassroomExtractClassesTrigger = createSkinnerViewGClassroomExtractClassesJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Classes job."
+                };
+
+                break;
+    
+            case "Skinner.View.GClassroom.Extract.Enrolments":
+                context.bindings.viewGClassroomExtractEnrolmentsTrigger = createSkinnerViewGClassroomExtractEnrolmentsJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Enrolments job."
+                };
+
+                break;
+        
+            case "Skinner.View.GClassroom.Extract.Students":
+                context.bindings.viewGClassroomExtractStudentsTrigger = createSkinnerViewGClassroomExtractStudentsJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Students job."
+                };
+
+                break;
+            
+            case "Skinner.View.GClassroom.Extract.Teachers":
+                context.bindings.viewGClassroomExtractTeachersTrigger = createSkinnerViewGClassroomExtractTeachersJob();
+
+                context.res = {
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Teachers job."
+                };
+
+                break;
+                
             case "Skinner.View.SkinnerStaff.Process":
                 context.bindings.viewSkinnerStaffProcessTrigger = createSkinnerViewSkinnerStaffProcessJob();
 
@@ -85,6 +125,34 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
     }
 
     function createSkinnerViewGClassroomProcessJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerViewGClassroomExtractClassesJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerViewGClassroomExtractEnrolmentsJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerViewGClassroomExtractStudentsJob(): string
+    {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerViewGClassroomExtractTeachersJob(): string
     {
         let triggerMessage = {};
 

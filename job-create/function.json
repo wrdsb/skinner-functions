@@ -17,6 +17,34 @@
             "direction": "out"
         },
         {
+            "name": "viewGClassroomExtractClassesTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-classes",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractEnrolmentsTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-enrolments",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractStudentsTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-students",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractTeachersTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-teachers",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "viewSkinnerStaffProcessTrigger",
             "type": "queue",
             "queueName": "view-skinnerstaff-process",
