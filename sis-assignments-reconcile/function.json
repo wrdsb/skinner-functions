@@ -17,21 +17,21 @@
         {
             "name": "queueCreates",
             "type": "queue",
-            "queueName": "assignments-replace",
+            "queueName": "assignment-replace",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
             "name": "queueUpdates",
             "type": "queue",
-            "queueName": "assignments-replace",
+            "queueName": "assignment-replace",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
             "name": "queueDeletes",
             "type": "queue",
-            "queueName": "assignments-delete",
+            "queueName": "assignment-delete",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
