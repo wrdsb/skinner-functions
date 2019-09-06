@@ -4,204 +4,28 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const body = req.body;
-    const jobType = req.body.job_type;
+    const jobType = body.job_type;
+    const alpha = body.alpha;
 
     if (jobType) {
-        switch (jobType) {
-            case "Skinner.View.GClassroom.Process":
-                context.bindings.viewGClassroomProcessTrigger = createSkinnerViewGClassroomProcessJob();
+        let triggerMessage = {};
 
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.GClassroom.Process job."
-                };
-
-                break;
-
-            case "Skinner.View.GClassroom.Extract.Classes":
-                context.bindings.viewGClassroomExtractClassesTrigger = createSkinnerViewGClassroomExtractClassesJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Classes job."
-                };
-
-                break;
-    
-            case "Skinner.View.GClassroom.Extract.Enrolments":
-                context.bindings.viewGClassroomExtractEnrolmentsTrigger = createSkinnerViewGClassroomExtractEnrolmentsJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Enrolments job."
-                };
-
-                break;
-        
-            case "Skinner.View.GClassroom.Extract.Students":
-                context.bindings.viewGClassroomExtractStudentsTrigger = createSkinnerViewGClassroomExtractStudentsJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Students job."
-                };
-
-                break;
-            
-            case "Skinner.View.GClassroom.Extract.Teachers":
-                context.bindings.viewGClassroomExtractTeachersTrigger = createSkinnerViewGClassroomExtractTeachersJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.GClassroom.Extract.Teachers job."
-                };
-
-                break;
-                
-            case "Skinner.View.SkinnerStaff.Process":
-                context.bindings.viewSkinnerStaffProcessTrigger = createSkinnerViewSkinnerStaffProcessJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.View.SkinnerStaff.Process job."
-                };
-
-                break;
-
-            case "Skinner.Class.Differences.Reconcile":
-                context.bindings.sisClassesReconcileTrigger = createSkinnerClassDifferencesReconcileJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.Class.Differences.Reconcile job."
-                };
-
-                break;
-    
-            case "Skinner.Enrolment.Differences.Reconcile.Alpha":
-                context.bindings.sisEnrolmentsReconcileTrigger = createSkinnerEnrolmentDifferencesReconcileAlphaJob(body.alpha);
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.Enrolment.Differences.Reconcile.Alpha job."
-                };
-
-                break;
-
-            case "Skinner.Enrolment.Differences.Reconcile.All":
-                context.bindings.sisEnrolmentsReconcileTrigger = createSkinnerEnrolmentDifferencesReconcileAllJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.Enrolment.Differences.Reconcile.All job."
-                };
-
-                break;
-
-            case "Skinner.Staff.Differences.Reconcile":
-                context.bindings.sisStaffReconcileTrigger = createSkinnerStaffDifferencesReconcileJob();
-
-                context.res = {
-                    status: 202,
-                    body: "Accepted. Queued Skinner.Staff.Differences.Reconcile.All job."
-                };
-
-                break;
-    
-            default:
-                context.res = {
-                    status: 422,
-                    body: "Unprocessable Entity. Cannot find the specified job_type."
-                };
-
-                break;
+        if (alpha) {
+            triggerMessage['alpha'] = alpha;
         }
+
+        context.bindings.jobQueueMessage = JSON.stringify(triggerMessage);
+
+        context.res = {
+            status: 202,
+            body: "Accepted. Job queued."
+        };
     }
     else {
         context.res = {
             status: 400,
             body: "Please pass a valid job_type in the request body."
         };
-    }
-
-    function createSkinnerViewGClassroomProcessJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerViewGClassroomExtractClassesJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerViewGClassroomExtractEnrolmentsJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerViewGClassroomExtractStudentsJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerViewGClassroomExtractTeachersJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerViewSkinnerStaffProcessJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerClassDifferencesReconcileJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerEnrolmentDifferencesReconcileAlphaJob(alpha: string): string
-    {
-        let triggerMessage = {
-            alpha: alpha
-        };
-
-        return JSON.stringify(triggerMessage);
-    }
-
-    function createSkinnerEnrolmentDifferencesReconcileAllJob(): string[]
-    {
-        let triggerMessages = [];
-
-        for (let i = 0; i < 26; i++) {
-            let triggerMessage = {
-                alpha: (i+10).toString(36)
-            };
-
-            triggerMessages.push(JSON.stringify(triggerMessage));
-        }
-
-        return triggerMessages;
-    }
-
-    function createSkinnerStaffDifferencesReconcileJob(): string
-    {
-        let triggerMessage = {};
-
-        return JSON.stringify(triggerMessage);
     }
 };
 
