@@ -1,0 +1,20 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "enrolment-reap",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": true,
+    "scriptFile": "../dist/enrolment-reap/index.js"
+}

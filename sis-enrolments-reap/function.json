@@ -1,0 +1,27 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "sis-enrolments-reap",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "logCalculation",
+            "type": "blob",
+            "path": "trillium/sis-enrolments-reap-{date}.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": true,
+    "scriptFile": "../dist/sis-enrolments-reap/index.js"
+}
