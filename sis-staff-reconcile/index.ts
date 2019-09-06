@@ -187,7 +187,7 @@ const sisStaffReconcile: AzureFunction = async function (context: Context, trigg
         let records_previous = {};
 
         const querySpec = {
-            query: `SELECT * FROM c`
+            query: `SELECT * FROM c WHERE c.deleted = false`
         }
         const queryOptions  = {
             maxItemCount: -1,

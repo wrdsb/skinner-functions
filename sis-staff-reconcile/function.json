@@ -38,7 +38,7 @@
         {
             "name": "logCalculation",
             "type": "blob",
-            "path": "trillium/sis-staff-reconcile.json",
+            "path": "logs/sis-staff-reconcile.json",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
