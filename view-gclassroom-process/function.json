@@ -22,62 +22,6 @@
             "direction": "out"
         },
         {
-            "name": "classesNowArray",
-            "type": "blob",
-            "path": "trillium/classes-now-array.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "classesNowObject",
-            "type": "blob",
-            "path": "trillium/classes-now-object.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "enrolmentsNowSortedArrays",
-            "type": "blob",
-            "path": "trillium/enrolments-now-sorted-arrays.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "enrolmentsNowSortedObject",
-            "type": "blob",
-            "path": "trillium/enrolments-now-sorted-object.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "studentsNowArray",
-            "type": "blob",
-            "path": "trillium/students-now-array.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "studentsNowObject",
-            "type": "blob",
-            "path": "trillium/students-now-object.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "teachersNowArray",
-            "type": "blob",
-            "path": "trillium/teachers-now-array.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "teachersNowObject",
-            "type": "blob",
-            "path": "trillium/teachers-now-object.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
             "name": "callbackMessage",
             "type": "queue",
             "direction": "out",
@@ -85,16 +29,9 @@
             "connection": "wrdsbskinner_STORAGE"
         },
         {
-            "name": "triggerSISClassesReconcile",
+            "name": "triggerJobs",
             "type": "queue",
-            "queueName": "sis-classes-reconcile",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "triggerSISEnrolmentsReconcile",
-            "type": "queue",
-            "queueName": "sis-enrolments-reconcile",
+            "queueName": "job-enqueue",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         }
