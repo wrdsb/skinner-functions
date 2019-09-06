@@ -11,11 +11,11 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
     let staffObject = {};
 
     rows.forEach(function(row) {
-        let ein          = row.STAFF_NO;
-        let school_code  = row.SCHOOL_CODE;
-        let school_year  = row.SCHOOL_YEAR;
-        let staff_type   = row.STAFF_TYPE;
-        let status       = row.STATUS;
+        let ein          = row.STAFF_NO.trim();
+        let school_code  = row.SCHOOL_CODE.trim();
+        let school_year  = row.SCHOOL_YEAR.trim();
+        let staff_type   = row.STAFF_TYPE.trim();
+        let status       = row.STATUS.trim();
 
         // Extract the 'class' object from the row
         let staff = {
@@ -56,7 +56,10 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
 
     context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
 
-    context.bindings.triggerSISStaffReconcile = JSON.stringify(callbackMessage);
+    const sis_staff_reconcile_job =     {
+        "job_type": "Skinner.Staff.Differences.Reconcile"
+    };
+    context.bindings.triggerJobs = [JSON.stringify(sis_staff_reconcile_job)];
 
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);

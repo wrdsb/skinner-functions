@@ -43,9 +43,9 @@
             "connection": "wrdsbskinner_STORAGE"
         },
         {
-            "name": "triggerSISStaffReconcile",
+            "name": "triggerJobs",
             "type": "queue",
-            "queueName": "sis-staff-reconcile",
+            "queueName": "job-enqueue",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         }
