@@ -1,0 +1,34 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "materialize-teacher-assignments",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "recordsNow",
+            "type": "blob",
+            "path": "trillium/assignments-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "logObject",
+            "type": "blob",
+            "path": "logs/materialize-teacher-assignments.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/materialize-teacher-assignments/index.js"
+}
