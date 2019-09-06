@@ -4,7 +4,7 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "materialize-teacher-assignments",
+            "queueName": "materialize-school-assignments",
             "connection": "wrdsbskinner_STORAGE"
         },
         {
@@ -15,9 +15,16 @@
             "direction": "in"
         },
         {
+            "name": "allSchools",
+            "type": "blob",
+            "path": "school-assignments/000-all-schools.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "logObject",
             "type": "blob",
-            "path": "logs/materialize-teacher-assignments.json",
+            "path": "logs/materialize-school-assignments.json",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
@@ -30,5 +37,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/materialize-teacher-assignments/index.js"
+    "scriptFile": "../dist/materialize-school-assignments/index.js"
 }

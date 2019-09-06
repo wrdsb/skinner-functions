@@ -1,12 +1,12 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { SharedKeyCredential, StorageURL, ServiceURL, ContainerURL, BlobURL, BlockBlobURL, Aborter } from "@azure/storage-blob";
 
-const materializeTeacherAssignments: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const materializeSchoolAssignments: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const storageAccount = process.env['storageAccount'];
     const storageKey = process.env['storageKey'];
-    const blobContainer = 'teacher-assignments';
+    const blobContainer = 'school-assignments';
 
     const sharedKeyCredential = new SharedKeyCredential(storageAccount, storageKey);
     const pipeline = StorageURL.newPipeline(sharedKeyCredential);
@@ -17,7 +17,7 @@ const materializeTeacherAssignments: AzureFunction = async function (context: Co
     const containerURL = ContainerURL.fromServiceURL(serviceURL, blobContainer);
 
     let logObject = {
-        path: "logs/materialize-teacher-assignments.json",
+        path: "logs/materialize-school-assignments.json",
         connection: 'wrdsbskinner_STORAGE',
         totalRecords: 0,
         totalBlobs: 0,
@@ -32,17 +32,17 @@ const materializeTeacherAssignments: AzureFunction = async function (context: Co
 
     recordsNow.forEach(record => {
         logObject.totalRecords++;
-        if (blobsObject[record.ein]) {
-            blobsObject[record.ein].push(record);
+        if (blobsObject[record.school_code]) {
+            blobsObject[record.school_code].push(record);
         } else {
-            blobsObject[record.ein] = [];
-            blobsObject[record.ein].push(record);
+            blobsObject[record.school_code] = [];
+            blobsObject[record.school_code].push(record);
         }
     });
 
-    Object.getOwnPropertyNames(blobsObject).forEach(ein => {
+    Object.getOwnPropertyNames(blobsObject).forEach(async schoolCode => {
         logObject.totalBlobs++;
-        let uploadResponse = createBlob(containerURL, ein, JSON.stringify(blobsObject[ein]));
+        let uploadResponse = await createBlob(containerURL, schoolCode, blobsObject[schoolCode]);
         logObject.uploadsStatus.push(uploadResponse);
     });
 
@@ -50,15 +50,16 @@ const materializeTeacherAssignments: AzureFunction = async function (context: Co
 
     let callbackMessage = await createEvent(logObject);
 
+    context.bindings.allSchools = blobsObject;
     context.bindings.logObject = JSON.stringify(logObject);
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
 
     context.log(JSON.stringify(callbackMessage));
     context.done(null, callbackMessage);
 
-    async function createBlob(containerURL, ein, data)
+    async function createBlob(containerURL, schoolCode, data)
     {
-        const blobName = ein + '.json';
+        const blobName = schoolCode.toLowerCase() + '-school-assignments.json';
         const blobURL = BlobURL.fromContainerURL(containerURL, blobName);
         const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
         
@@ -77,7 +78,7 @@ const materializeTeacherAssignments: AzureFunction = async function (context: Co
 
         let event = {
             id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-            eventType: 'Skinner.Teacher.Assignments.Materialize',
+            eventType: 'Skinner.School.Assignments.Materialize',
             eventTime: execution_timestamp,
             //subject: ,
             data: {
@@ -95,4 +96,4 @@ const materializeTeacherAssignments: AzureFunction = async function (context: Co
     }
 };
 
-export default materializeTeacherAssignments;
+export default materializeSchoolAssignments;
