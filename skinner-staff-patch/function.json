@@ -4,7 +4,7 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "staff-replace",
+            "queueName": "staff-patch",
             "connection": "wrdsbskinner_STORAGE"
         },
         {
@@ -34,5 +34,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/staff-replace/index.js"
+    "scriptFile": "../dist/skinner-staff-patch/index.js"
 }

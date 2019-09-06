@@ -4,14 +4,14 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "staff-patch",
+            "queueName": "class-delete",
             "connection": "wrdsbskinner_STORAGE"
         },
         {
             "name": "recordIn",
             "type": "cosmosDB",
             "databaseName": "skinner",
-            "collectionName": "staff",
+            "collectionName": "classes",
             "id": "{id}",
             "partitionKey": "{id}",
             "connectionStringSetting": "wrdsb-skinner_CosmosDB",
@@ -21,7 +21,7 @@
             "name": "recordOut",
             "type": "cosmosDB",
             "databaseName": "skinner",
-            "collectionName": "staff",
+            "collectionName": "classes",
             "connectionStringSetting": "wrdsb-skinner_CosmosDB",
             "direction": "out"
         },
@@ -34,5 +34,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/staff-patch/index.js"
+    "scriptFile": "../dist/skinner-class-delete/index.js"
 }

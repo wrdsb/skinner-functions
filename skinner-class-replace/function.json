@@ -34,5 +34,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/class-replace/index.js"
+    "scriptFile": "../dist/skinner-class-replace/index.js"
 }

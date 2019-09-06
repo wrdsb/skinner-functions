@@ -4,7 +4,7 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "enrolment-delete",
+            "queueName": "enrolment-patch",
             "connection": "wrdsbskinner_STORAGE"
         },
         {
@@ -34,5 +34,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/enrolment-delete/index.js"
+    "scriptFile": "../dist/skinner-enrolment-patch/index.js"
 }

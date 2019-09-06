@@ -1,10 +1,11 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumEnrolmentDelete: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const skinnerClassDelete: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
 
+    // check for existing record
     if (!old_record) {
         old_record = context.bindings.triggerMessage;
     }
@@ -22,7 +23,7 @@ const trilliumEnrolmentDelete: AzureFunction = async function (context: Context,
 
     let event = {
         id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.Enrolment.Delete',
+        eventType: 'Skinner.Class.Delete',
         eventTime: execution_timestamp,
         //subject: ,
         data: {
@@ -45,4 +46,4 @@ const trilliumEnrolmentDelete: AzureFunction = async function (context: Context,
     context.done(null, JSON.stringify(event));
 };
 
-export default trilliumEnrolmentDelete;
+export default skinnerClassDelete;

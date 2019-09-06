@@ -1,23 +1,15 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumClassPatch: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const skinnerClassReplace: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let patch = context.bindings.triggerMessage;
-    let new_record;
+    let new_record = context.bindings.triggerMessage;
 
-    if (old_record) {
-        // Merge request object into current record
-        new_record = Object.assign(old_record, patch);
-    } else {
-        new_record = patch;
-        new_record.created_at = execution_timestamp;
-    }
-    
+    if (!old_record) { old_record = {}; }
+
+    new_record.created_at = (old_record.created_at ? old_record.created_at : execution_timestamp);
     new_record.updated_at = execution_timestamp;
-
-    // patching a record implicitly undeletes it
     new_record.deleted_at = null;
     new_record.deleted = false;
 
@@ -25,12 +17,12 @@ const trilliumClassPatch: AzureFunction = async function (context: Context, trig
     //let sanitized_class_code = new_record.class_code.replace('/', '-');
     //new_record.id = new_record.school_code + '-' + sanitized_class_code;
 
-    // Simply write data to database, regardless of what might already be there
+    // Simply write data to database, regardless of what might already be there    
     context.bindings.recordOut = new_record;
 
     let event = {
         id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.Class.Patch',
+        eventType: 'Skinner.Class.Replace',
         eventTime: execution_timestamp,
         //subject: ,
         data: {
@@ -53,4 +45,4 @@ const trilliumClassPatch: AzureFunction = async function (context: Context, trig
     context.done(null, JSON.stringify(event));
 };
 
-export default trilliumClassPatch;
+export default skinnerClassReplace;

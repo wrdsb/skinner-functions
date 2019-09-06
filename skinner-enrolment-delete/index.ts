@@ -1,34 +1,28 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumEnrolmentPatch: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const skinnerEnrolmentDelete: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let patch = context.bindings.triggerMessage;
-    let new_record;
 
-    if (old_record) {
-        // Merge request object into current record
-        new_record = Object.assign(old_record, patch);
-    } else {
-        new_record = patch;
-        new_record.created_at = execution_timestamp;
+    if (!old_record) {
+        old_record = context.bindings.triggerMessage;
     }
-    
-    new_record.updated_at = execution_timestamp;
-    new_record.deleted_at = null;
-    new_record.deleted = false;
 
-    // We use the Enrolment's school_code, class_code, and student_number as the Cosmos DB record's id
-    //let sanitized_class_code = new_record.class_code.replace('/', '-');
-    //new_record.id = new_record.school_code + '-' + sanitized_class_code + '-' + new_record.student_number;
+    // not really a copy, just another reference
+    // TODO: make a real copy for the sake of the event data
+    let new_record = old_record;
 
-    // Simply write data to database, regardless of what might already be there
+    // mark the record as deleted
+    new_record.deleted_at = execution_timestamp;
+    new_record.deleted = true;
+
+    // simply write data to database, overwriting existing record
     context.bindings.recordOut = new_record;
 
     let event = {
         id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.Enrolment.Patch',
+        eventType: 'Skinner.Enrolment.Delete',
         eventTime: execution_timestamp,
         //subject: ,
         data: {
@@ -51,4 +45,4 @@ const trilliumEnrolmentPatch: AzureFunction = async function (context: Context, 
     context.done(null, JSON.stringify(event));
 };
 
-export default trilliumEnrolmentPatch;
+export default skinnerEnrolmentDelete;

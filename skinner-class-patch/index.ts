@@ -1,28 +1,36 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const enrolmentReplace: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const skinnerClassPatch: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let new_record = context.bindings.triggerMessage;
+    let patch = context.bindings.triggerMessage;
+    let new_record;
 
-    if (!old_record) { old_record = {}; }
-
-    new_record.created_at = (old_record.created_at ? old_record.created_at : execution_timestamp);
+    if (old_record) {
+        // Merge request object into current record
+        new_record = Object.assign(old_record, patch);
+    } else {
+        new_record = patch;
+        new_record.created_at = execution_timestamp;
+    }
+    
     new_record.updated_at = execution_timestamp;
+
+    // patching a record implicitly undeletes it
     new_record.deleted_at = null;
     new_record.deleted = false;
 
     // We use the Enrolment's school_code, class_code, and student_number as the Cosmos DB record's id
     //let sanitized_class_code = new_record.class_code.replace('/', '-');
-    //new_record.id = new_record.school_code + '-' + sanitized_class_code + '-' + new_record.student_number;
+    //new_record.id = new_record.school_code + '-' + sanitized_class_code;
 
-    // Simply write data to database, regardless of what might already be there    
+    // Simply write data to database, regardless of what might already be there
     context.bindings.recordOut = new_record;
 
     let event = {
         id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.Enrolment.Replace',
+        eventType: 'Skinner.Class.Patch',
         eventTime: execution_timestamp,
         //subject: ,
         data: {
@@ -45,4 +53,4 @@ const enrolmentReplace: AzureFunction = async function (context: Context, trigge
     context.done(null, JSON.stringify(event));
 };
 
-export default enrolmentReplace;
+export default skinnerClassPatch;

@@ -1,24 +1,29 @@
 import { AzureFunction, Context } from "@azure/functions"
 
-const trilliumStaffReplace: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const skinnerStaffDelete: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     let old_record = context.bindings.recordIn;
-    let new_record = context.bindings.triggerMessage;
 
-    if (!old_record) { old_record = {}; }
+    // check for existing record
+    if (!old_record) {
+        old_record = context.bindings.triggerMessage;
+    }
 
-    new_record.created_at = (old_record.created_at ? old_record.created_at : execution_timestamp);
-    new_record.updated_at = execution_timestamp;
-    new_record.deleted_at = null;
-    new_record.deleted = false;
+    // not really a copy, just another reference
+    // TODO: make a real copy for the sake of the event data
+    let new_record = old_record;
 
-    // Simply write data to database, regardless of what might already be there    
+    // mark the record as deleted
+    new_record.deleted_at = execution_timestamp;
+    new_record.deleted = true;
+
+    // simply write data to database, overwriting existing record
     context.bindings.recordOut = new_record;
 
     let event = {
         id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.Staff.Replace',
+        eventType: 'Skinner.Staff.Delete',
         eventTime: execution_timestamp,
         //subject: ,
         data: {
@@ -41,4 +46,4 @@ const trilliumStaffReplace: AzureFunction = async function (context: Context, tr
     context.done(null, JSON.stringify(event));
 };
 
-export default trilliumStaffReplace;
+export default skinnerStaffDelete;
