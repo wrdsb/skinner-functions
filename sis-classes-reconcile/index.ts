@@ -191,7 +191,7 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
         let records_previous = {};
 
         const querySpec = {
-            query: `SELECT * FROM c`
+            query: `SELECT * FROM c WHERE c.deleted = false`
         }
         const queryOptions  = {
             maxItemCount: -1,
@@ -223,7 +223,8 @@ const sisClassesReconcile: AzureFunction = async function (context: Context, tri
                     school_code: item.school_code,
                     class_code: item.class_code,
                     teacher_ein: item.teacher_ein,
-                    teacher_email: item.teacher_email
+                    teacher_email: item.teacher_email,
+                    teacher_name: item.teacher_name
 
                     // these fields are not present in the data from the SIS
                     //created_at: item.created_at,
