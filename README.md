@@ -1,2 +1,2 @@
-# skinner-functions
-Azure Functions app for Skinner, our SIS API client
+# Archived
+Merged into [COSMOS](https://github.com/wrdsb/cosmos), June 2, 2020.
